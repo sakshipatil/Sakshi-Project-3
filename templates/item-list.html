@@ -107,9 +107,7 @@
 
     </table>
     <p>
-        <button class="button" onclick="location.href='{{ ip_addr }}favorites-list'" type="submit">Favorites</button>
-
-                <button class="button" onclick="location.href='{{ ip_addr }}add-icecream'" type="submit">Add Ice cream</button>
+         <button class="button" onclick="location.href='{{ ip_addr }}add-icecream'" type="submit">Add Ice cream</button>
     </p>
 
 </form>
@@ -118,7 +116,7 @@
 <!--<form>-->
 <form id = 'Favorites List' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
 
-    <table id ="myTable1">
+    <table id ="myTable">
         <tr>
             <th>Id</th>
             <th>Ice cream Name</th>

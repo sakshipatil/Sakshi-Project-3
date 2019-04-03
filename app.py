@@ -35,14 +35,14 @@ def item():
 
 @app.route('/register')
 def register_page():
-    return render_template("register-page.html", ip_addr=ip_addr)
+    return render_template("login-page.html", ip_addr=ip_addr)
 
 
 @app.route('/add_icecream_id/<icecream_id>', methods=['POST','GET'])
 def add_icecream_id(icecream_id):
     iid = icecream_id
     c = icecream.find_one({"_id": int(iid)})
-    return render_template("add-icecream.html", data=c, ip_addr=ip_addr)
+    return render_template("item-list.html", data=c, ip_addr=ip_addr)
 
 
 @app.route('/register_icecreamsubmit', methods=['POST','GET'])
@@ -64,7 +64,7 @@ def register_icecreamsubmit():
     return render_template("item-list.html")
 
 
-@app.route('/favorites', methods=['POST','GET'])
+@app.route('/favorites', methods=['POST', 'GET'])
 def add_favorites():
 
     c = request.form["uid"]

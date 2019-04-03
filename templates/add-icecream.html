@@ -55,7 +55,7 @@
 			}
 			var x = document.forms["favorites"]["Ice cream Flavour"].value;
 			if (x == "") {
-				alert("Ice cream Flavourshould not be empty");
+				alert("Ice cream Flavour should not be empty");
 				return false;
 			}
 			var x = document.forms["favorites"]["Ice cream Type"].value;
@@ -74,7 +74,7 @@
 
 <body>
 
-<form id = "Add" action="{{ ip_addr }}add-icecream" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+<form id = "Add" action="{{ ip_addr }}itemlist" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
 	<p><h2>Add New Ice cream :</h2></p>
 	<p><input id="uid" name="uid" type = "hidden"  value ={{data._id}} /></p>
 
