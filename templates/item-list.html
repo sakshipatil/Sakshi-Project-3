@@ -34,6 +34,29 @@
             background-color: #1E90FF;
             color: white;
         }
+
+        #myTable1 {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #myTable1 td, #myTable1 th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #myTable1 tr:nth-child(even){background-color: #f2f2f2;}
+
+        #myTable1 tr:hover {background-color: #ddd;}
+
+        #myTable1 th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1E90FF;
+            color: white;
+        }
     </style>
     <script>
 
@@ -93,9 +116,9 @@
 <p><h2>Ice cream List :</h2></p>
 
 <!--<form>-->
-<form id = 'Favorites' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
+<form id = 'Favorites' action="{{ ip_addr }}add_icecream_id" method="GET" enctype="multipart/form-data">
 
-    <table id ="myTable">
+    <table id ="myTable1">
         <tr>
             <th>Id</th>
             <th>Ice cream Name</th>
@@ -107,14 +130,14 @@
 
     </table>
     <p>
-         <button class="button" onclick="location.href='{{ ip_addr }}add-icecream'" type="submit">Add Ice cream</button>
+         <button class="button" onclick="location.href='{{ ip_addr }}add_icecream_id'" type="submit">Add Ice cream</button>
     </p>
 
 </form>
 <p><h2> Favorites Ice cream :</h2></p>
 
 <!--<form>-->
-<form id = 'Favorites List' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
+<form id = 'Favorites List' action="{{ ip_addr }}logout" method="GET" enctype="multipart/form-data">
 
     <table id ="myTable">
         <tr>
@@ -127,7 +150,7 @@
 
     </table>
     <p>
-        <button class="button" onclick="location.href='{{ ip_addr }}login-page'" type="submit">Logout</button>
+        <button class="button" onclick="location.href='{{ ip_addr }}logout'" type="submit">Logout</button>
 
     </p>
 </form>
