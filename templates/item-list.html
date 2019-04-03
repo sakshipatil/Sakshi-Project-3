@@ -69,12 +69,12 @@
                     var cell6 = row.insertCell(5);
                     var cell7 = row.insertCell(6);
                     // Add some text to the new cells:
-                    cell1.innerHTML = data.student[i]['_id'];
-                    cell2.innerHTML = data.student[i]['first_name'];
-                    cell3.innerHTML = data.student[i]['last_name'];
-                    cell4.innerHTML = data.student[i]['email'];
-                    cell5.innerHTML = data.student[i]['address'];
-                    cell6.innerHTML = data.student[i]['description'];
+                    cell1.innerHTML = data.item[i]['_id'];
+                    cell2.innerHTML = data.item[i]['icecream_name'];
+                    cell3.innerHTML = data.item[i]['icecream_flavour'];
+                    cell4.innerHTML = data.item[i]['icecream_type'];
+                    cell5.innerHTML = data.item[i]['icecream_price'];
+                    cell6.innerHTML = data.item[i]['description'];
                     cell7.innerHTML = "<p><input name=\"id\" type = \"hidden\" value=" + data.item[i]['_id'] + " ><input type=\"button\" onclick= \"sss( " + data.item[i]['_id'] +") \" value= \"Favorites\" ></p>";
 
                 }
@@ -93,7 +93,7 @@
 <p><h2>Ice cream List :</h2></p>
 
 <!--<form>-->
-<form id = 'Favorites List' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
+<form id = 'Favorites' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
 
     <table id ="myTable">
         <tr>
@@ -118,7 +118,7 @@
 <!--<form>-->
 <form id = 'Favorites List' action="{{ ip_addr }}favorites-list" method="GET" enctype="multipart/form-data">
 
-    <table id ="myTable">
+    <table id ="myTable1">
         <tr>
             <th>Id</th>
             <th>Ice cream Name</th>

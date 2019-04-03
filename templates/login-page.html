@@ -3,11 +3,11 @@
 <head>
 
 </head>
-    <body>
 <h1>WELCOME TO LOGIN PAGE</h1>
-			<form>
+
+                <form>
 				Username: <input type="text" name="username"><br/><br/>
-				Password: <input type="password" name="password"><br/><br/>
+                    Password: <input type="password" name="password"><br/><br/></form>
      <style>
         .button {
             background-color: #1E90FF; /* DodgerBlue */
@@ -32,14 +32,15 @@ body{
 	font-size:20px;}
 
         </style>
-    </body>
- <p>
-        <button class="button" onclick="location.href='{{ ip_addr }}item-list'" type="submit">Login</button>
+    <body>
 
+    <p>
+        <button class="button" onclick="location.href='{{ ip_addr }}itemlist'" type="submit">Login</button>
 
-
-     <button class="button" onclick="location.href='{{ ip_addr }}register-page'" type="submit">Register</button>
-
+        <button class="button" onclick="location.href='{{ ip_addr }}register'" type="submit">Register</button>
     </p>
-</form>
+
+    </form>
+    </body>
+
 </html>
