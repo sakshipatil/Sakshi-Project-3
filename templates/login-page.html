@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+    <body>
+<h1>WELCOME TO LOGIN PAGE</h1>
+			<form>
+				Username: <input type="text" name="username"><br/><br/>
+				Password: <input type="password" name="password"><br/><br/>
+     <style>
+        .button {
+            background-color: #1E90FF; /* DodgerBlue */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        h1{
+	color=yellow;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+body{
+	text-align: Center;
+	color:Black;
+	background:white;
+	padding:5px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:20px;}
+
+        </style>
+    </body>
+ <p>
+        <button class="button" onclick="location.href='{{ ip_addr }}item-list'" type="submit">Login</button>
+
+
+
+     <button class="button" onclick="location.href='{{ ip_addr }}register-page'" type="submit">Register</button>
+
+    </p>
+</form>
+</html>
