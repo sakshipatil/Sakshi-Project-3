@@ -75,53 +75,25 @@
 </head>
 
 <body>
-<form id = 'register' action="{{ ip_addr }}login" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
-	<p><h2>New User, Register !</h2></p>
+<form id = 'register' action="{{ ip_addr }}register_icecreamsubmit" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+	<p><h2>New User, Register </h2></p>
 	<table id ="myTable">
 
 		<tr><td>First Name : </td><td><input type="text" id="first_name" name="first_name" placeholder="First Name "/></td></tr>
 		<tr><td>Last Name : </td><td><input type="text" id="last_name"  name="last_name" placeholder="Last Name "/></td></tr>
 		<tr><td>Username : </td><td><input type="text" id="username"  name="username" placeholder="Username "/></td></tr>
-		<tr><td>Password : </td><td><input type="password" id="password" name="password" placeholder="Password "/></td></tr>
-		<tr><td><input type="submit" class="button" value="Submit"></td></tr>
+		<tr><td>Password : </td><td><input type="text" id="password" name="password" placeholder="Password "/></td></tr>
+		<tr><td><div id ='dvPreview'></div></td></tr>
+		<tr><td><input type="submit" class="button" onclick="location.href='{{ ip_addr }}submit'" value="Submit"></td></tr>
 	</table>
 </form>
 <br>
 <br>
 <br>
 <p>
-	<button  class="button" onclick="location.href='{{ ip_addr }}login'" type="button">Login</button>
+	<button  class="button" onclick="location.href='{{ ip_addr }}submit'" type="button">Login</button>
 </p>
-<script>
-	// window.onload =
-	function previewFile() {
-		var preview = document.querySelector('img'); //selects the query named img
-		console.log(preview)
-		var files = document.querySelector('input[type=file]').files; //sames as here
-		console.log(files)
 
-		// fileUpload.onchange = function () {
-		//if (typeof (FileReader) != "undefined") {
-		var dvPreview = document.getElementById("dvPreview");
-		//dvPreview.innerHTML = "";
-		for (var i = 0; i < files.length; i++) {
-			var file = files[i];
-
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				var img = document.createElement("IMG");
-				img.height = "200";
-				img.width = "200";
-				img.src = e.target.result;
-				dvPreview.appendChild(img);
-			}
-			reader.readAsDataURL(file);
-
-		}
-
-	};
-
-
-</script>
 </body>
+
 </html>

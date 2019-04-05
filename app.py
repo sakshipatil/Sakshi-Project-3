@@ -27,46 +27,65 @@ ip_addr="http://"+str(IP)+":5000/"
 # route for home page
 @app.route('/')
 def login():
-    return render_template("login-user.html", ip_addr=ip_addr)
+    return render_template("login-page.html", ip_addr=ip_addr)
+
+@app.route('/itemlist')
+def item():
+    return render_template("item-list.html", ip_addr=ip_addr)
 
 @app.route('/register')
-def register():
-    return render_template("register-user.html", ip_addr=ip_addr)
+def register_page():
+    return render_template("register-page.html", ip_addr=ip_addr)
 
-@app.route('/icecreamlist')
-def icecreamlist():
-    return render_template("icecream-list.html", ip_addr=ip_addr)
+@app.route('/submit')
+def submit_page():
+    return render_template("login-page.html", ip_addr=ip_addr)
 
-@app.route('/addicecream')
-def addicecream():
-    return render_template("add-icecream.html", ip_addr=ip_addr)
-
-@app.route('/add_icecream_id/<icecream_id>', methods=['POST','GET'])
+@app.route('/add_icecream_id/<icecream_id>', methods=['POST', 'GET'])
 def add_icecream_id(icecream_id):
     iid = icecream_id
     c = icecream.find_one({"_id": int(iid)})
     return render_template("add-icecream.html", data=c, ip_addr=ip_addr)
 
-@app.route('/add_favorite_id/<favorite_id>', methods=['POST','GET'])
-def add_favorite_id(icecream_id):
-    iid = icecream_id
-    c = icecream.find_one({"_id": int(iid)})
-    return render_template("icecream-list.html", data=c, ip_addr=ip_addr)
+@app.route('/register_icecreamsubmit', methods=['POST','GET'])
+def register_icecreamsubmit():
+    try:
+        c = icecream.find_one(sort=[("_id", -1)])["_id"]
+        c = c + 1
+    except:
+        c = 1
 
-@app.route('/edit_icecream_id/<icecream_id>', methods=['POST','GET'])
-def edit_icecream_id(icecream_id):
-    iid = icecream_id
-    c = icecream.find_one({"_id": int(iid)})
-    return render_template("edit-icecream.html", data=c,ip_addr=ip_addr)
+    icecream_name = request.form["icecream_name"]
+    icecream_flavour = request.form["icecream_flavour"]
+    icecream_type = request.form["icecream_type"]
+    icecream_price = request.form["icecream_price"]
+    description = request.form["description"]
+
+    mydict = {'_id': c, 'icecream_name': icecream_name, 'icecream_flavour': icecream_flavour, 'icecream_type': icecream_type, 'icecream_price': icecream_price, 'description': description}
+    y = icecream.insert_one(mydict)
+    return render_template("item-list.html")
 
 
-@app.route('/favorite')
-def addfavorite():
-    return render_template("icecream-list.html", ip_addr=ip_addr)
+@app.route('/favorites', methods=['POST', 'GET'])
+def add_favorites():
+
+    c = request.form["uid"]
+    icecream_name = request.form["icecream_name"]
+    icecream_flavour = request.form["icecream_flavour"]
+    icecream_type = request.form["icecream_type"]
+    icecream_price = request.form["icecream_price"]
+    description = request.form["description"]
+
+    mydict = {'icecream_name': icecream_name, 'icecream_flavour': icecream_flavour, 'icecream_type':  icecream_type, ' icecream_price':  icecream_price, 'description': description}
+
+    y = item.update_one({"_id" : int(c)}, {"$set": mydict}, upsert=False)
+    return render_template("item-list.html")
+
+
 
 @app.route('/all_icecream', methods=['GET'])
 def all_icecream():
-    cursor = icecream.find()
+    cursor = item.find()
     l = []
     for document in cursor:
         l.append(document)
