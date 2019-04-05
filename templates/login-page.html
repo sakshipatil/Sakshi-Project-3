@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-</head>
-<h1>WELCOME TO LOGIN PAGE</h1>
-
-                <form>
-				Username: <input type="text" name="username"><br/><br/>
-                    Password: <input type="password" name="password"><br/><br/></form>
-     <style>
+   <style>
         .button {
             background-color: #1E90FF; /* DodgerBlue */
             border: none;
@@ -32,15 +25,22 @@ body{
 	font-size:20px;}
 
         </style>
+</head>
     <body>
 
+<h1>WELCOME TO LOGIN PAGE</h1>
+
+
+<form action="{{ip_addr}}login_submit" method="POST"  enctype="multipart/form-data">
+    Username: <input type="text" name="username"><br/><br/>
+    Password: <input type="password" name="password"><br/><br/>
     <p>
-        <button class="button" onclick="location.href='{{ ip_addr }}itemlist'" type="submit">Login</button>
-
-        <button class="button" onclick="location.href='{{ ip_addr }}register'" type="submit">Register</button>
+        <button class="button" type="submit">Login</button>
     </p>
+</form>
 
-    </form>
+<button class="button" onclick="location.href='{{ ip_addr }}register'" type="button">Register</button>
+
     </body>
 
 </html>

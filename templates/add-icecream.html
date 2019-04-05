@@ -74,9 +74,8 @@
 
 <body>
 
-<form id = "Add" action="{{ ip_addr }}itemlist" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+<form id = "Add" action="{{ ip_addr }}add_icecreamsubmit" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
 	<p><h2>Add New Ice cream :</h2></p>
-	<p><input id="uid" name="uid" type = "hidden"  value ={{data._id}} /></p>
 
 	<table id ="myTable">
 
@@ -85,10 +84,6 @@
 		<tr><td>Ice cream Type : </td><td><input type="text" name="icecream_type" placeholder="icecream_type "  /></td></tr>
 		<tr><td>Ice cream Price : </td><td><input type="text" name="icecream_price" placeholder="icecream_price "  /></td></tr>
 
-
-		<tr>	<td><div id="container"></div></td></tr>
-
-		<textarea id = "hh" name="hh" rows="10" cols="30" hidden>{{data.image}}</textarea>
 		<tr><td><input type="submit" class="button" value="Add Ice cream"></td></tr>
 
 	</table>
@@ -101,18 +96,5 @@
 	<button class="button" onclick="location.href='{{ ip_addr }}item-list'" type="button">All Ice cream</button>
 </p>
 
-<script>
-	var g =document.getElementById("hh").value;
-	var k = eval(g);
-
-	var i = 0;
-	for (i=0;i<k.length;i++){
-		var img = document.createElement('img');
-		img.src =k[i];
-		img.height="200";
-		img.width="200";
-		document.getElementById('container').appendChild(img);
-	}
-</script>
 </body>
 </html>
