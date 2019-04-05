@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-</head>
-<h1>WELCOME TO LOGIN PAGE</h1>
-
-                <form>
+	<head>
+		<!--<link rel="stylesheet" href="css.css">-->
+	</head>
+		<body>
+			<h1>WELCOME TO LOGIN PAGE</h1>
+			<form>
 				Username: <input type="text" name="username"><br/><br/>
-                    Password: <input type="password" name="password"><br/><br/></form>
-     <style>
-        .button {
+				Password: <input type="password" name="password"><br/><br/>
+
+				<style>	        .button {
             background-color: #1E90FF; /* DodgerBlue */
             border: none;
             color: white;
@@ -30,17 +30,13 @@ body{
 	padding:5px;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size:20px;}
-
-        </style>
-    <body>
-
-    <p>
-        <button class="button" onclick="location.href='{{ ip_addr }}itemlist'" type="submit">Login</button>
+}</style>
+    	</body>
+                    <p>
+        <button class="button" onclick="location.href='{{ ip_addr }}icecreamlist'" type="submit">Login</button>
 
         <button class="button" onclick="location.href='{{ ip_addr }}register'" type="submit">Register</button>
     </p>
-
-    </form>
-    </body>
+			</form>
 
 </html>

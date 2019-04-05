@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset=utf-8>
-	<title>Add New Ice cream </title>
+	<title>Add New Icecream </title>
+
 	<style>
 		input {
 			width: 100%;
@@ -21,6 +22,7 @@
 			text-decoration: none;
 			display: inline-block;
 			font-size: 16px;
+			width: 200px
 		}
 		#myTable {
 			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -48,24 +50,24 @@
 	<script>
 
 		function validateForm() {
-			var x = document.forms["favorites"]["Ice cream Name"].value;
+			var x = document.forms["add new icecream"]["icecream_name"].value;
 			if (x == "") {
-				alert("Ice cream Name should not be empty");
+				alert("IcecreamName should not be empty");
 				return false;
 			}
-			var x = document.forms["favorites"]["Ice cream Flavour"].value;
+			var x = document.forms["add new icecream"]["icecream_flavour"].value;
 			if (x == "") {
-				alert("Ice cream Flavour should not be empty");
+				alert("Icecream Flavour should not be empty");
 				return false;
 			}
-			var x = document.forms["favorites"]["Ice cream Type"].value;
+			var x = document.forms["add new icecream"]["icecream_type"].value;
 			if (x == "") {
-				alert("Ice cream Type should not be empty");
+				alert("Icecream Type should not be empty");
 				return false;
 			}
-			var x = document.forms["favorites"]["Ice cream Price"].value;
+			var x = document.forms["add new icecream"]["icecream_price"].value;
 			if (x == "") {
-				alert("Ice cream Price should not be empty");
+				alert("Icecream Price should not be empty");
 				return false;
 			}
 		}
@@ -73,46 +75,54 @@
 </head>
 
 <body>
-
-<form id = "Add" action="{{ ip_addr }}itemlist" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
-	<p><h2>Add New Ice cream :</h2></p>
-	<p><input id="uid" name="uid" type = "hidden"  value ={{data._id}} /></p>
-
+<form id = 'register' action="{{ ip_addr }}register_submit" onsubmit="return validateForm()" method="POST" enctype="multipart/form-data">
+	<p><h2>Add New Icecream !</h2></p>
 	<table id ="myTable">
 
-		<tr><td>Ice cream Name : </td><td><input type="text" id="icecream_name" name="icecream_name" placeholder="Ice cream Name "   /></td></tr>
-		<tr><td>Ice cream Flavour : </td><td><input type="text" id="icecream_flavour" name="icecream_flavour" placeholder="Ice cream Flavour "   /></td></tr>
-		<tr><td>Ice cream Type : </td><td><input type="text" name="icecream_type" placeholder="icecream_type "  /></td></tr>
-		<tr><td>Ice cream Price : </td><td><input type="text" name="icecream_price" placeholder="icecream_price "  /></td></tr>
-		<tr><td>Description : </td><td><input type="text" name="description" placeholder="Description "   /></td></tr>
-
-		<tr>	<td><div id="container"></div></td></tr>
-
-		<textarea id = "hh" name="hh" rows="10" cols="30" hidden>{{data.image}}</textarea>
-		<tr><td><input type="submit" class="button" value="Add Ice cream"></td></tr>
-
+		<tr><td>Icecream Name : </td><td><input type="text" id="icecream_name" name="icecream_name" placeholder="Icecream Name "/></td></tr>
+		<tr><td>Icecream Flavour : </td><td><input type="text" id="icecream_flavour"  name="icecream_flavour" placeholder="Icecream Flavour "/></td></tr>
+		<tr><td>Icecream Type : </td><td><input type="text" id="icecream_type"  name="icecream_type" placeholder="Icecream Type "/></td></tr>
+		<tr><td>Icecream Price </td><td><input type="text" id="icecream_price" name="icecream_price" placeholder="Icecream Price "/></td></tr>
+		<tr><td><div id ='dvPreview'></div></td></tr>
+		<tr><td><input type="submit" class="button" onclick="location.href='{{ ip_addr }}icecreamlist'" value="Add Icecream"></td></tr>
 	</table>
 </form>
-
 <br>
 <br>
 <br>
 <p>
-	<button class="button" onclick="location.href='{{ ip_addr }}item-list'" type="button">All Ice cream</button>
+	<button  class="button" onclick="location.href='{{ ip_addr }}icecreamlist'" type="button">All Icecream </button>
 </p>
-
 <script>
-	var g =document.getElementById("hh").value;
-	var k = eval(g);
+	// window.onload =
+	function previewFile() {
+		var preview = document.querySelector('img'); //selects the query named img
+		console.log(preview)
+		var files = document.querySelector('input[type=file]').files; //sames as here
+		console.log(files)
 
-	var i = 0;
-	for (i=0;i<k.length;i++){
-		var img = document.createElement('img');
-		img.src =k[i];
-		img.height="200";
-		img.width="200";
-		document.getElementById('container').appendChild(img);
-	}
+		// fileUpload.onchange = function () {
+		//if (typeof (FileReader) != "undefined") {
+		var dvPreview = document.getElementById("dvPreview");
+		//dvPreview.innerHTML = "";
+		for (var i = 0; i < files.length; i++) {
+			var file = files[i];
+
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				var img = document.createElement("IMG");
+				img.height = "200";
+				img.width = "200";
+				img.src = e.target.result;
+				dvPreview.appendChild(img);
+			}
+			reader.readAsDataURL(file);
+
+		}
+
+	};
+
+
 </script>
 </body>
 </html>
