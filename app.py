@@ -14,7 +14,7 @@ mydb = client.icecreamDB
 
 icecream = mydb["icecream"]
 mycols = mydb["user"]
-mycolu = mydb["Favorites"]
+favorites = mydb['favorites']
 
 app = Flask(__name__)
 api = Api(app)
@@ -74,13 +74,23 @@ def addicecream():
 @app.route('/submit')
 def submit_page():
     return render_template("submit.html", ip_addr=ip_addr)
-#
-# @app.route('/add_icecream_id/<icecream_id>', methods=['POST', 'GET'])
-# def add_icecream_id(icecream_id):
-#     iid = icecream_id
-#     c = icecream.find_one({"_id": int(iid)})
-#     return render_template("add-icecream.html", data=c, ip_addr=ip_addr)
-#
+
+@app.route('/add_favorites_id/<icecream_id>', methods=['POST', 'GET'])
+def add_icecream_id(icecream_id):
+    iid = icecream_id
+    c = icecream.find_one({"_id": int(iid)})
+    print(c)
+    favorites.insert(c)
+    return render_template("item-list.html", ip_addr=ip_addr)
+
+@app.route('/remove_favorites_id/<icecream_id>', methods=['POST', 'GET'])
+def remove_icecream_id(icecream_id):
+    iid = icecream_id
+    c = icecream.find_one({"_id": int(iid)})
+    print(c)
+    favorites.remove(c)
+    return render_template("item-list.html", ip_addr=ip_addr)
+
 # @app.route('/edit_icecream_id/<icecream_id>', methods=['POST','GET'])
 # def edit_icecream_id(icecream_id):
 #     iid = icecream_id
@@ -114,9 +124,9 @@ def add_favorites():
     icecream_flavour = request.form["icecream_flavour"]
     icecream_type = request.form["icecream_type"]
     icecream_price = request.form["icecream_price"]
-    description = request.form["description"]
 
-    mydict = {'icecream_name': icecream_name, 'icecream_flavour': icecream_flavour, 'icecream_type':  icecream_type, ' icecream_price':  icecream_price, 'description': description}
+
+    mydict = {'_id':c,'icecream_name': icecream_name, 'icecream_flavour': icecream_flavour, 'icecream_type':  icecream_type, ' icecream_price':  icecream_price}
 
     y = item.update_one({"_id" : int(c)}, {"$set": mydict}, upsert=False)
     return render_template("item-list.html")
@@ -125,6 +135,19 @@ def add_favorites():
 @app.route('/all_icecream', methods=['GET'])
 def all_icecream():
     cursor = icecream.find()
+    l = []
+    for document in cursor:
+        print("D",document)
+        l.append(document)
+        print(l)
+    data = {"item": l}
+    print("DDDDDDDDDDDDDDDDD0",data)
+    ff = json.loads(json_util.dumps(data))
+    return jsonify(ff)
+
+@app.route('/all_favorites_icecream', methods=['GET'])
+def all_favorites_icecream():
+    cursor = favorites.find()
     l = []
     for document in cursor:
         print("D",document)

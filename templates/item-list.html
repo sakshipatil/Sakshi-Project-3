@@ -63,9 +63,8 @@
         function sss(iiid) {
             var xmlhttp;
             var data1 = iiid;
-            var lll = "{{ ip_addr }}favorites_id/"+ data1;
+            var lll = "{{ ip_addr }}add_favorites_id/"+ data1;
             location.href = lll;
-
         }
 
         var request = new XMLHttpRequest();
@@ -97,7 +96,7 @@
                     cell3.innerHTML = data.item[i]['icecream_flavour'];
                     cell4.innerHTML = data.item[i]['icecream_type'];
                     cell5.innerHTML = data.item[i]['icecream_price'];
-                    cell6.innerHTML = "<p><input name=\"id\" type = \"hidden\" value=" + data.item[i]['_id'] + " ><input type=\"button\" onclick= \"sss( " + data.item[i]['_id'] +") \" value= \"Favorites\" ></p>";
+                    cell6.innerHTML = "<p><input name=\"id\" type = \"hidden\" value=" + data.item[i]['_id'] + " ><input type=\"button\" onclick= \"sss( " + data.item[i]['_id'] +") \" value= \"Favorite\" ></p>";
 
                 }
             } else {
@@ -109,19 +108,19 @@
 
         request.send();
 
+    </script>
+    <script>
 
-
-
-        function sss(iiid) {
+        function sss2(iiid) {
             var xmlhttp;
             var data1 = iiid;
-            var lll = "{{ ip_addr }}edit_id/"+ data1;
+            var lll = "{{ ip_addr }}remove_favorites_id/"+ data1;
             location.href = lll;
 
         }
 
         var request = new XMLHttpRequest();
-        request.open('GET', '{{ ip_addr }}all_icecream', true);
+        request.open('GET', '{{ ip_addr }}all_favorites_icecream', true);
         request.onload = function () {
 
             // Begin accessing JSON data here
@@ -149,7 +148,7 @@
                     cell3.innerHTML = data.item[i]['icecream_flavour'];
                     cell4.innerHTML = data.item[i]['icecream_type'];
                     cell5.innerHTML = data.item[i]['icecream_price'];
-                    cell6.innerHTML = "<p><input name=\"id\" type = \"hidden\" value=" + data.item[i]['_id'] + " ><input type=\"button\" onclick= \"sss( " + data.item[i]['_id'] +") \" value= \"Edit\" ></p>";
+                    cell6.innerHTML = "<p><input name=\"id\" type = \"hidden\" value=" + data.item[i]['_id'] + " ><input type=\"button\" onclick= \"sss2( " + data.item[i]['_id'] +") \" value= \"Remove\" ></p>";
 
                 }
             } else {
@@ -197,7 +196,7 @@
             <th>Ice cream Flavour</th>
             <th>Ice cream Type</th>
             <th>Ice cream Price</th>
-            <th>Edit</th>
+            <th>Remove</th>
         </tr>
 
     </table>
